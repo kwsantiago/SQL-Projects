@@ -49,6 +49,9 @@ select min(price_per_gal) as lowest, avg(price_per_gal) as average, max(price_pe
 -- 9
 select vehicle_id, total_cost from fillups;
 
+-- 10
+select vehicle_id, round(avg(mpg)) from fillups where left(mpg, 2) <> 25 and left(mpg, 2) <> 37 and left(mpg, 4) <> 24.9 group by id order by mpg;
+
 
 
 
