@@ -38,16 +38,37 @@ alter table fillups
 drop column `restart`;
 
 -- 7
--- I rounded the total cost to 33.78 because all the other total costs rounded up one when the calculation was made by doing (price_per_gal * volume)
 update fillups
 set price_per_gal = 3.419, total_cost = 33.78
 where id = 74;
 
 -- 8
-select min(price_per_gal) as lowest, avg(price_per_gal) as average, max(price_per_gal) as highest from fillups;
+select min(price_per_gal) as lowest, 
+avg(price_per_gal) as average, 
+max(price_per_gal) as highest 
+from fillups;
 
 -- 9
 select vehicle_id, total_cost from fillups;
 
 -- 10
-select vehicle_id, round(avg(mpg)) as avg_mpg from fillups where left(mpg, 2) <> 25 and left(mpg, 2) <> 37 and left(mpg, 4) <> 24.9 group by id order by mpg;
+select vehicle_id, round(avg(mpg)) as avg_mpg from fillups
+where mpg <> 0
+group by vehicle_id;
+
+-- 11
+select 
+case
+	when vehicle_id = 2 then 'Prius'
+	when vehicle_id <> 2 then 'Other'
+end as 'vehicle_id', 
+round(avg(mpg)) as avg_mpg from fillups
+where mpg <> 0
+group by vehicle_id;
+
+-- 12
+select hour(date_time) as hour,
+count(hour(date_time)) as num_times
+from fillups 
+group by hour 
+order by hour;
