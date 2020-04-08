@@ -19,7 +19,6 @@ create table fillups
 );
 
 -- 4
--- This command displays the correct time 
 select from_unixtime(1392164473694 / 1000);
 
 -- 5
@@ -108,7 +107,9 @@ end as 'month',
 left(date_time, 4) as year,
 vehicle_id,
 count(month(date_time)) as nbr_fillups,
-round(volume * count(month(date_time))) as total_gallons
+round(sum(volume)) as total_gallons,
+sum(volume) as NOT_REQUIRED
 from fillups
-group by year, month(date_time)
-order by total_gallons desc;
+group by month(date_time), year, vehicle_id 
+order by sum(volume) desc;
+
