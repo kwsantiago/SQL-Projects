@@ -1,0 +1,138 @@
+[
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "range",
+          "name": "Record ID",
+          "expression": "value",
+          "columnName": "Record ID",
+          "from": 0,
+          "to": 510000,
+          "selectNumeric": false,
+          "selectNonNumeric": true,
+          "selectBlank": true,
+          "selectError": true
+        }
+      ],
+      "mode": "row-based"
+    },
+    "description": "Remove rows"
+  },
+  {
+    "op": "core/row-reorder",
+    "mode": "row-based",
+    "sorting": {
+      "criteria": [
+        {
+          "valueType": "number",
+          "column": "Record ID",
+          "blankPosition": 2,
+          "errorPosition": 1,
+          "reverse": false
+        }
+      ]
+    },
+    "description": "Reorder rows"
+  },
+  {
+    "op": "core/blank-down",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Record ID",
+    "description": "Blank down cells in column Record ID"
+  },
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "Record ID",
+          "expression": "isBlank(value)",
+          "columnName": "Record ID",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "description": "Remove rows"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "Categories",
+          "columnName": "Categories",
+          "query": "||",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Categories",
+    "expression": "grel:value.replace('||', '|')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Categories using expression grel:value.replace('||', '|')"
+  },
+  {
+    "op": "core/multivalued-cell-split",
+    "columnName": "Categories",
+    "keyColumnName": "Record ID",
+    "mode": "separator",
+    "separator": "|",
+    "regex": false,
+    "description": "Split multi-valued cells in column Categories"
+  },
+  {
+    "op": "core/multivalued-cell-join",
+    "columnName": "Categories",
+    "keyColumnName": "Record ID",
+    "separator": "|",
+    "description": "Join multi-valued cells in column Categories"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "Categories",
+          "columnName": "Categories",
+          "query": "",
+          "mode": "text",
+          "caseSensitive": false,
+          "invert": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Categories",
+    "expression": "grel:value.split('|').uniques().join('|')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Categories using expression grel:value.split('|').uniques().join('|')"
+  }
+]
