@@ -16,3 +16,13 @@ GROUP BY
   state
 ORDER BY
   most_num desc;
+
+-- Q4
+SELECT
+  name
+FROM
+  `bigquery-public-data.usa_names.usa_1910_current`
+GROUP BY
+  name
+HAVING
+  max(number) = 10021
