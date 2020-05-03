@@ -31,4 +31,31 @@ add column id int not null auto_increment first,
 add primary key (id);
 
 -- Q5
-select lname, fname from grades group by lname, fname order by lname;
+select lname, fname 
+from grades 
+group by lname, fname 
+order by lname;
+
+-- Q6
+select concat(fname, " ", lname) as name, avg(grade) as avg 
+from grades 
+group by name 
+order by avg desc;
+
+-- Q7
+select lname, fname, unit_num, assgn_type, assgn_num, submit_date-due_date as days_late 
+from grades 
+where submit_date-due_date > 0 
+group by lname, fname 
+order by unit_num;
+
+-- Q8
+select concat(fname, " ", lname) as name, (
+   select due_date 
+   from grades 
+   order by due_date desc
+   limit 1
+  ) as due_date, submit_date-due_date as days_late 
+from grades 
+where submit_date-due_date > 0
+group by name;
