@@ -1,0 +1,265 @@
+[
+  {
+    "op": "core/column-split",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Sname",
+    "guessCellType": true,
+    "removeOriginalColumn": true,
+    "mode": "separator",
+    "separator": ", ",
+    "regex": false,
+    "maxColumns": 0,
+    "description": "Split column Sname by separator"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Sname 2",
+    "expression": "value.toTitlecase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Sname 2 using expression value.toTitlecase()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Sname 1",
+    "expression": "value.toTitlecase()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Sname 1 using expression value.toTitlecase()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Due_date",
+    "expression": "value.toDate()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Due_date using expression value.toDate()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Submit_date",
+    "expression": "value.toDate()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Submit_date using expression value.toDate()"
+  },
+  {
+    "op": "core/column-split",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Assgn",
+    "guessCellType": true,
+    "removeOriginalColumn": true,
+    "mode": "separator",
+    "separator": ".",
+    "regex": false,
+    "maxColumns": 4,
+    "description": "Split column Assgn by separator"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Assgn 1",
+    "description": "Remove column Assgn 1"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Sname 1",
+    "newColumnName": "lname",
+    "description": "Rename column Sname 1 to lname"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Sname 2",
+    "newColumnName": "fname",
+    "description": "Rename column Sname 2 to fname"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Assgn 2",
+    "newColumnName": "unit_num",
+    "description": "Rename column Assgn 2 to unit_num"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Assgn 3",
+    "newColumnName": "assgn_type",
+    "description": "Rename column Assgn 3 to assgn_type"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Assgn 4",
+    "newColumnName": "assgn_num",
+    "description": "Rename column Assgn 4 to assgn_num"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "assgn_type",
+    "expression": "value.replace(/hw/i,\"h\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column assgn_type using expression value.replace(/hw/i,\"h\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "assgn_type",
+    "expression": "value.replace(/D/i,\"d\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column assgn_type using expression value.replace(/D/i,\"d\")"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "assgn_type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Homewrk"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "h"
+      }
+    ],
+    "description": "Mass edit cells in column assgn_type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "assgn_type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "discussion"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "d"
+      }
+    ],
+    "description": "Mass edit cells in column assgn_type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "assgn_type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "dISC"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "d"
+      }
+    ],
+    "description": "Mass edit cells in column assgn_type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "assgn_type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "HomewROk"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "h"
+      }
+    ],
+    "description": "Mass edit cells in column assgn_type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "assgn_type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "disc"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "d"
+      }
+    ],
+    "description": "Mass edit cells in column assgn_type"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "assgn_type",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Homework"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "h"
+      }
+    ],
+    "description": "Mass edit cells in column assgn_type"
+  }
+]
