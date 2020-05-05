@@ -9,10 +9,10 @@ create table grades
 	fname varchar(7),
 	due_date date,
 	submit_date date,
-	unit_num tinyint,
+	unit_num tinyint, -- I used tinyints instead of ints since they conserve on the resources used in the database. They go from 0-255, so it's perfect for these columns.
 	assgn_type char,
 	assgn_num tinyint,
-	grade int	
+	grade tinyint	
 );
 
 load data local
